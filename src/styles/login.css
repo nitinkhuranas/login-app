@@ -1,0 +1,95 @@
+.app-container {
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-image: linear-gradient(to bottom, #4286f4, #4286f4 50%, #f3e9e9 50%);
+}
+
+.app-container:nth-child(1){
+    padding-top: 20px;
+}
+
+.app-container:nth-child(n){
+    padding-bottom: 20px;
+}
+
+.app-container .logo{
+    height: 150px;
+    width: 150px;
+    /* background-image: url(src/assets/logo.png);
+    background-size: contain;
+    background-repeat: no-repeat; */
+}
+
+.app-container h3 {
+    color: #ffffff;
+    font-size: 26px;
+}
+
+.login-container{
+    border: 1px solid #ffffff;
+    border-radius: 10px;
+    padding: 20px;
+    height: 300px;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+}
+
+.login-container >* {
+    margin: 10px;
+    cursor: pointer;
+}
+
+.login-container .action-items{
+    display: flex;
+}
+
+.login-container .create-account{
+    color: #4286f4;
+    align-self: center
+}
+
+.login-container .auth-msg{
+    color: red;
+    align-self: center
+}
+
+.login-container .remember-me{
+    flex-grow: 1;
+}
+
+.login-container .login-button{
+    height: 40px;
+    border: 0;
+    border-radius: 5px;
+    background-color: #4286f4;
+    color: #ffffff;
+    font-size: 20px;
+}
+
+.login-container .text-box {
+    padding-left: 5px;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    border-bottom: 2px solid #4286f4;
+}
+
+.login-container .text-box:focus:invalid { 
+    border-bottom-color: red;
+}
+
+.login-container .text-box:focus { 
+   cursor: text;
+}
+
+.text-box::placeholder{
+    opacity: 0.5;
+}
+  
+.login-container input[type="checkbox"] {
+    vertical-align: middle;
+}

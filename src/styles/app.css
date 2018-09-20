@@ -1,0 +1,29 @@
+/* input */
+.input .input-item {
+    display: inline-block;
+    padding: 20px;
+}
+
+.input .submit-button {
+    height: 25px;
+    border: 0;
+    border-radius: 5px;
+    background-color: #4286f4;
+    color: #ffffff;
+    font-size: 15px;
+}
+
+/* output */
+.output {
+    border-collapse: collapse;
+}
+
+.output img {
+    width: 100px;
+    height: 100px;
+}
+
+.output th, .output td {
+    padding: 10px;
+    border: 1px solid blue;
+}
