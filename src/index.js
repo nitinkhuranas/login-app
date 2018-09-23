@@ -4,4 +4,4 @@ import App from "./modules/app.jsx";
 import './styles/app.css';
 import './styles/login.css';
 
-ReactDOM.render(<App />, document.getElementById("root"));
+ReactDOM.render(<App/>, document.getElementById("root"));

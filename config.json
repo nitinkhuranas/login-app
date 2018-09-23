@@ -1,0 +1,18 @@
+{
+    "dev": {
+        "apiKey": "apikey",
+        "authDomain": "authDomain",
+        "databaseURL": "databaseURL",
+        "projectId": "projectId",
+        "storageBucket": "storageBucket",
+        "messagingSenderId": "messagingSenderId"
+    },
+    "prod": {
+        "apiKey": "apikey",
+        "authDomain": "authDomain",
+        "databaseURL": "databaseURL",
+        "projectId": "projectId",
+        "storageBucket": "storageBucket",
+        "messagingSenderId": "messagingSenderId"
+    }
+}
