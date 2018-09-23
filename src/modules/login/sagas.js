@@ -1,4 +1,4 @@
-import { put, call, all, takeEvery } from 'redux-saga/effects';
+import { put, call, apply, all, takeEvery } from 'redux-saga/effects';
 import * as actionTypes from "./actionTypes";
 import * as actions from "./actions";
 import firebaseAuth from '../firebaseAuth';
@@ -14,7 +14,6 @@ export function* authorizeUser(action) {
     }
 }
 
-
 export function* signUpUser(action) {
     const { email, password } = action;
     try{
@@ -25,17 +24,19 @@ export function* signUpUser(action) {
     }
 }
 
-export function* watchAuthorizeUser() {
-    yield takeEvery(actionTypes.TRIGGER_AUTHORIZE_USER, authorizeUser)
-}
-
-export function* watchSignUpUser() {
-    yield takeEvery(actionTypes.TRIGGER_SIGN_UP_USER, signUpUser)
+export function* logoutUser(action) {
+    try {
+        const response = yield call([firebaseAuth, firebaseAuth.signOut]);
+        yield put(actions.setIsAuthenticated(false));
+    } catch(e) {
+        console.log("logout failed")
+    }
 }
 
 export default function* loginSaga() {
     yield all([
-        watchAuthorizeUser(),
-        watchSignUpUser(),
+        yield takeEvery(actionTypes.TRIGGER_AUTHORIZE_USER, authorizeUser),
+        yield takeEvery(actionTypes.TRIGGER_SIGN_UP_USER, signUpUser),
+        yield takeEvery(actionTypes.TRIGGER_LOGOUT_USER, logoutUser)
     ])
 }

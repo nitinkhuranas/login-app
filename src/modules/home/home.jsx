@@ -2,6 +2,7 @@ import React from "react";
 import { Redirect } from 'react-router-dom';
 import Output from "../output/container";
 import Input from "../input/container";
+import Header from "../header/container";
 
 function Home(props) {
     if(!props.isAuthenticated){
@@ -9,11 +10,10 @@ function Home(props) {
     }
     return (
         <div>
+            <Header/>
             <h1>Find info of all commits between 2 commits</h1>
-                <div>
-                    <Input/>
-                    <Output/>
-                </div>
+            <Input/>
+            <Output/>
         </div>
     );
 }

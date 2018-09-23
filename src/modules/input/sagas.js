@@ -15,12 +15,8 @@ export function* fetchRepoData(action) {
     }
 }
 
-export function* watchFetchRepoData() {
-    yield takeEvery(actionTypes.GET_REPO_DATA, fetchRepoData)
-}
-
 export default function* inputSaga() {
     yield all([
-        watchFetchRepoData(),
+        yield takeEvery(actionTypes.GET_REPO_DATA, fetchRepoData),
     ])
 }

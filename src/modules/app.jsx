@@ -9,7 +9,6 @@ function App(props) {
                 <Routes/>
             </Provider>
         );
-    
 }
 
 export default App;

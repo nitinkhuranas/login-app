@@ -16,6 +16,12 @@ export function triggerSignUpUser(email, password){
     };
 }
 
+export function triggerLogoutUser(){
+    return {
+        type: actionTypes.TRIGGER_LOGOUT_USER,
+    };
+}
+
 export function setIsAuthenticated(isAuthenticated){
     return {
         type: actionTypes.SET_IS_AUTHENTICATED,
