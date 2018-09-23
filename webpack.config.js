@@ -1,12 +1,23 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const MiniCssExtractPlugin  = require("mini-css-extract-plugin");
 
 module.exports = {
-    entry: ['@babel/polyfill', './src/index.js'],
+    entry:{
+        vendor: [
+            "react",
+            "react-dom",
+            "redux"
+        ],
+        main: [
+            "@babel/polyfill",
+            "./src/index.js"
+        ],
+    },
     output: {
         path: path.join(__dirname, "/dist"),
-        filename: "index-bundle.js",
-        publicPath: '/'
+        filename: "[name].[hash].js",
+        publicPath: "/"
     },
     module: {
         rules: [
@@ -16,23 +27,45 @@ module.exports = {
                 use: {
                     loader: "babel-loader",
                     options: {
-                        presets: ['@babel/preset-env', '@babel/preset-react'],
-                        plugins: [require('@babel/plugin-proposal-object-rest-spread')]
+                        plugins: [require("@babel/plugin-proposal-object-rest-spread")]
                     }
                 }
             },
             {
                 test: /\.css$/,
-                use: ["style-loader", "css-loader"]
-            }
+                use: [
+                  {
+                    loader: MiniCssExtractPlugin.loader,
+                  },
+                  "css-loader"
+                ]
+              }
         ]
+    },
+    optimization: {
+        splitChunks: {
+          cacheGroups: {
+            vendor: {
+              chunks: "initial",
+              name: "vendor",
+              test: "vendor",
+              enforce: true
+            },
+          }
+        },
+        runtimeChunk: true
     },
     devServer: {
         historyApiFallback: true,
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: "./src/index.html"
-        })
+            hash: true,
+            template: './src/index.html',
+            filename: 'index.html'
+        }),
+        new MiniCssExtractPlugin({
+            filename: "[name].[hash].css",
+        }) 
     ]
 };

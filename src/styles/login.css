@@ -17,7 +17,7 @@
 .app-container .logo{
     height: 150px;
     width: 150px;
-    /* background-image: url(src/assets/logo.png);
+    /* background-image: url(/assets/logo.png);
     background-size: contain;
     background-repeat: no-repeat; */
 }

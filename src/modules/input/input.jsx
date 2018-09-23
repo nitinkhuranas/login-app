@@ -4,10 +4,10 @@ class Input extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            owner: 'Jam3',
-            repo: 'math-as-code',
-            base: 'cc58af6e948b55aac9b74ba6d2257705ceedcac3',
-            head: '25f6d2034735210e9981b74b58836c17f9b02663',
+            owner: '',
+            repo: '',
+            base: '',
+            head: '',
             isValidForm: false,
         }
 
