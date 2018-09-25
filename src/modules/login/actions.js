@@ -8,14 +8,6 @@ export function triggerAuthorizeUser(email, password){
     };
 }
 
-export function triggerSignUpUser(email, password){
-    return {
-        type: actionTypes.TRIGGER_SIGN_UP_USER,
-        email,
-        password,
-    };
-}
-
 export function triggerLogoutUser(){
     return {
         type: actionTypes.TRIGGER_LOGOUT_USER,

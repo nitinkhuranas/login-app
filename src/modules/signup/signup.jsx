@@ -1,19 +1,28 @@
 import React from "react";
-import { Redirect, Link } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
-class Login extends React.Component {
+class Signup extends React.Component {
     constructor(props){
         super(props);
         
         this.state = {
+            name: '',
             email: '',
             password: '',
+            confirmPassword: '',
         };
 
+        this.handleNameChange = this.handleNameChange.bind(this);
         this.handleEmailChange = this.handleEmailChange.bind(this);
         this.handlePasswordChange = this.handlePasswordChange.bind(this);
-        this.handleLoginClick = this.handleLoginClick.bind(this);
-        this.handleKeyUp = this.handleKeyUp.bind(this);
+        this.handleConfirmPasswordChange = this.handleConfirmPasswordChange.bind(this);
+        this.handleSignupClick = this.handleSignupClick.bind(this);
+    }
+
+    handleNameChange(evt){
+        this.setState({
+            name: evt.target.value,
+        })
     }
 
     handleEmailChange(evt){
@@ -27,43 +36,53 @@ class Login extends React.Component {
             password: evt.target.value,
         })
     }
-    
-    handleLoginClick(evt){
+
+    handleConfirmPasswordChange(evt){
+        this.setState({
+            confirmPassword: evt.target.value,
+        })
+    }
+
+    handleSignupClick(){
         const {
+            name,
             email,
             password,
         } = this.state;
 
-        this.props.onLoginClick(email, password);
-    }
-
-    handleKeyUp(evt){
-        if(evt.keyCode === 13){
-            this.handleLoginClick();
-            return;
-        }
+        this.props.onSignupClick(name, email, password);
     }
 
     render(){    
         const {
+            name,
             email,
             password,
+            confirmPassword,
         } = this.state;
 
         const {
-            isAuthenticated,
-            authenticationMsg,
+            signupMsg,
+            isSuccess
         } = this.props;
-        
-        if(isAuthenticated){
-            return <Redirect to='/' />
+
+        if(isSuccess){
+            return <Redirect to='/login' />
         }
-    
+        
         return (
                 <div className="app-container">
                     <div className="logo"></div>
                     <h3>Login</h3>
                     <div className="login-container">
+                        <input
+                            type="text"
+                            className="text-box"
+                            placeholder="Name"
+                            value={name}
+                            onChange={this.handleNameChange}
+                            required
+                        />
                         <input
                             type="email"
                             className="text-box"
@@ -79,16 +98,22 @@ class Login extends React.Component {
                             placeholder="Password"
                             value={password} 
                             onChange={this.handlePasswordChange}
-                            onKeyUp={this.handleKeyUp}
                             required
                         />
-                        <button className="login-button" onClick={this.handleLoginClick}>Login</button>
-                        <Link className="create-account" to='/signup'>Create Account</Link>
-                        <span className="auth-msg">{authenticationMsg}</span>
+                        <input
+                            type="password"
+                            className="text-box"
+                            placeholder="Confirm Password"
+                            value={confirmPassword} 
+                            onChange={this.handleConfirmPasswordChange}
+                            required
+                        />
+                        <span className="create-account" onClick={this.handleSignupClick}>Signup</span>
+                        <span className="auth-msg">{signupMsg}</span>
                     </div>    
                 </div>
         );
     }
 }
 
-export default Login;
+export default Signup;

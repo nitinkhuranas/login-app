@@ -16,9 +16,6 @@ function mapDispatchToProps(dispatch) {
         onLoginClick: function(email, password){
             dispatch(actions.triggerAuthorizeUser(email, password))
         },
-        onSignUpClick: function(email, password){
-            dispatch(actions.triggerSignUpUser(email, password))
-        },
     }
 }
 

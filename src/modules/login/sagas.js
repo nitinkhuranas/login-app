@@ -14,16 +14,6 @@ export function* authorizeUser(action) {
     }
 }
 
-export function* signUpUser(action) {
-    const { email, password } = action;
-    try{
-        yield put(actions.setAuthenticationMessage(""));
-        const response = yield call([firebaseAuth, firebaseAuth.createUserWithEmailAndPassword], email, password);
-    } catch(e){
-        yield put(actions.setAuthenticationMessage("Sign up failed"));
-    }
-}
-
 export function* logoutUser(action) {
     try {
         const response = yield call([firebaseAuth, firebaseAuth.signOut]);
@@ -36,7 +26,6 @@ export function* logoutUser(action) {
 export default function* loginSaga() {
     yield all([
         yield takeEvery(actionTypes.TRIGGER_AUTHORIZE_USER, authorizeUser),
-        yield takeEvery(actionTypes.TRIGGER_SIGN_UP_USER, signUpUser),
         yield takeEvery(actionTypes.TRIGGER_LOGOUT_USER, logoutUser)
     ])
 }
