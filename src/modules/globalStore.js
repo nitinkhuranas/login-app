@@ -1,18 +1,15 @@
 import { createStore, applyMiddleware, combineReducers } from 'redux';
 import createSagaMiddleware from 'redux-saga';
-import input from './input/reducer';
+import inputReducer from './input/reducer';
 import inputSaga from './input/sagas';
-import login from './login/reducer';
-import loginSaga from './login/sagas';
-import signup from './signup/reducer';
-import signupSaga from './signup/sagas';
+import authenticationSaga from './authentication/sagas';
+import authenticationReducer from './authentication/reducer';
 
 const sagaMiddleware = createSagaMiddleware();
 
 const reducers =  combineReducers({
-    input,
-    login,
-    signup,
+    input: inputReducer,
+    authentication: authenticationReducer
 })
 
 const store = createStore(
@@ -21,8 +18,7 @@ const store = createStore(
 )
 
 sagaMiddleware.run(inputSaga);
-sagaMiddleware.run(loginSaga);
-sagaMiddleware.run(signupSaga);
+sagaMiddleware.run(authenticationSaga);
 
 /*uncomment or debugging*/
 window.$store = store;

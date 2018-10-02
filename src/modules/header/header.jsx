@@ -11,8 +11,11 @@ class Header extends React.Component {
     }
 
     render(){
+        const { userName } = this.props;
+console.log("in header = " + userName)
         return (
             <div className="header">
+                <span>Hi {userName}</span>
                 <button onClick={this.handleLogoutClick}>Logout</button>
             </div>
         );

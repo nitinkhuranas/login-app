@@ -1,5 +1,5 @@
 import React from "react";
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 
 class Signup extends React.Component {
     constructor(props){
@@ -63,17 +63,19 @@ class Signup extends React.Component {
 
         const {
             signupMsg,
-            isSuccess
+            isAuthenticated
         } = this.props;
 
-        if(isSuccess){
-            return <Redirect to='/login' />
+        if(isAuthenticated){
+            return <Redirect to='/' />
         }
+
+        const isValid = name && email && password && confirmPassword && password === confirmPassword;
         
         return (
                 <div className="app-container">
                     <div className="logo"></div>
-                    <h3>Login</h3>
+                    <h3>Create Account</h3>
                     <div className="login-container">
                         <input
                             type="text"
@@ -108,9 +110,17 @@ class Signup extends React.Component {
                             onChange={this.handleConfirmPasswordChange}
                             required
                         />
-                        <span className="create-account" onClick={this.handleSignupClick}>Signup</span>
+                        <button 
+                            className="create-account" 
+                            disabled={!isValid}
+                            onClick={this.handleSignupClick}
+                        >
+                            Signup
+                        </button>
+                        <span>Already have an account? <Link to='/login'>Sign in</Link></span>
+                        
                         <span className="auth-msg">{signupMsg}</span>
-                    </div>    
+                    </div> 
                 </div>
         );
     }

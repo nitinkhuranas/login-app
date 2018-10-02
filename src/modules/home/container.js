@@ -1,6 +1,6 @@
 import {connect} from 'react-redux';
 import Home from './home.jsx';
-import * as selectors from '../login/selectors';
+import * as selectors from '../authentication/selectors';
 
 function mapStateToProps(state) {
     return {

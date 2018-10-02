@@ -1,12 +1,12 @@
 import {connect} from 'react-redux';
+import * as authenticationSelectors from '../authentication/selectors';
+import * as authenticationActions from '../authentication/actions';
 import Signup from './signup.jsx';
-import * as actions from './actions';
-import * as selectors from './selectors';
 
 function mapStateToProps(state) {
     return {
-        isSuccess: selectors.getIsSuccess(state),
-        signupMsg: selectors.getSignupMsg(state),
+        isAuthenticated: authenticationSelectors.getIsAuthenticated(state),
+        signupMsg: authenticationSelectors.getSignupMsg(state),
     }
 }
 
@@ -14,7 +14,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
     return {
         onSignupClick: function(name, email, password){
-            dispatch(actions.doSignupUser(name, email, password))
+            dispatch(authenticationActions.doSignupUser(name, email, password))
         },
     }
 }

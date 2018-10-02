@@ -1,13 +1,20 @@
 import {connect} from 'react-redux';
 import Header from './header.jsx';
-import * as loginActions from '../login/actions';
+import * as authenticationActions from '../authentication/actions';
+import * as authenticationSelectors from '../authentication/selectors';
+
+function mapStateToProps(state) {
+    return {
+        userName: authenticationSelectors.getUserName(state),
+    }
+}
 
 function mapDispatchToProps(dispatch) {
     return {
         onLogoutClick: function(){
-            dispatch(loginActions.triggerLogoutUser());
+            dispatch(authenticationActions.triggerLogoutUser());
         }
     }
 }
 
-export default connect(null, mapDispatchToProps)(Header);
+export default connect(mapStateToProps, mapDispatchToProps)(Header);
